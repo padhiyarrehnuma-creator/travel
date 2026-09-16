@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Explore World · Tours & Travels</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="loadingScreen" class="loading-screen">
+    <div class="loading-earth">
+        <div class="earth-sphere">
+            <div class="earth-map"></div>
+            <div class="earth-clouds"></div>
+            <div class="earth-shine"></div>
+        </div>
+        <div class="earth-shadow"></div>
+    </div>
+    <h1 class="loading-title"><span>Explore</span>World</h1>
+    <p class="loading-sub">Preparing your journey...</p>
+    <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+</div>
+
+<!-- CREATE ACCOUNT PAGE -->
+<div id="createAccountPage" class="account-page action-account-modal" style="display:none;">
+    <div class="account-container">
+        <div class="account-box">
+            <div class="account-logo">
+                <h1><span>Explore</span>World</h1>
+                <p>Create your account to continue</p>
+            </div>
+            <form id="createAccountForm" autocomplete="off">
+                <input type="text" id="accFullName" placeholder="Full Name" required autocomplete="off" />
+                <input type="email" id="accEmail" placeholder="Email Address" required autocomplete="off" />
+                <input type="tel" id="accPhone" placeholder="Phone Number" required autocomplete="off" />
+                <div class="password-field">
+                    <input type="password" id="accPassword" placeholder="Create Password" required autocomplete="new-password" />
+                    <button type="button" class="toggle-password" data-target="accPassword">👁️</button>
+                </div>
+                <div class="password-field">
+                    <input type="password" id="accConfirmPassword" placeholder="Confirm Password" required autocomplete="new-password" />
+                    <button type="button" class="toggle-password" data-target="accConfirmPassword">👁️</button>
+                </div>
+                <button type="submit" class="create-account-btn">🚀 Create Account</button>
+            </form>
+            <p class="account-toggle-text">
+                Already have an account? <a href="#" id="showLoginPage">Login here</a>
+            </p>
+        </div>
+
+        <div class="account-box" id="loginBox" style="display: none;">
+            <div class="account-logo">
+                <h1><span>Explore</span>World</h1>
+                <p>Welcome back! Login to continue</p>
+            </div>
+            <form id="loginForm" autocomplete="off">
+                <input type="email" id="loginEmail" placeholder="Email Address" required autocomplete="off" />
+                <div class="password-field">
+                    <input type="password" id="loginPassword" placeholder="Password" required autocomplete="current-password" />
+                    <button type="button" class="toggle-password" data-target="loginPassword">👁️</button>
+                </div>
+                <button type="submit" class="create-account-btn">🔐 Login</button>
+            </form>
+            <p class="account-toggle-text">
+                Don't have an account? <a href="#" id="showSignupPage">Create one now</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="mainApp" style="display: block;">
+
+    <header>
+        <div class="navbar">
+            <div class="logo"><a href="#" data-section="home"><span>Explore</span>World</a></div>
+            <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+            <label for="nav-toggle" class="nav-toggle-label"><span></span><span></span><span></span></label>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="#" class="nav-link active" data-section="home" data-i18n="nav.home">🏠 Home</a></li>
+                    <li><a href="#" class="nav-link" data-section="about" data-i18n="nav.about">📖 About</a></li>
+                    <li><a href="#" class="nav-link" data-section="tours" data-i18n="nav.tours">✈️ Tours</a></li>
+                    <li><a href="#" class="nav-link" data-section="flights" data-i18n="nav.flights">✈️ Flights</a></li>
+                    <li><a href="#" class="nav-link" data-section="offers" data-i18n="nav.offers">🔥 Offers</a></li>
+                    <li><a href="#" class="nav-link" data-section="hotels" data-i18n="nav.hotels">🏨 Hotels</a></li>
+                    <li><a href="#" class="nav-link" data-section="profile" data-i18n="nav.profile">👤 Profile</a></li>
+                    
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search destinations..." id="searchInput" data-i18n-placeholder="nav.search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="search_query" />
+                    <button type="button" class="mic-btn" id="searchMicBtn" title="Voice Search">🎤</button>
+                    <button type="button" id="searchBtn" title="Search">🔍</button>
+                </div>
+                <div class="language-picker" title="Language">
+                    <span>🌐</span>
+                    <select id="languageSelect" aria-label="Choose language">
+                        <option value="en">English</option>
+                        <option value="hi">हिन्दी</option>
+                        <option value="gu">ગુજરાતી</option>
+                    </select>
+                </div>
+                <a href="#" class="wishlist-icon" id="wishlistIcon">❤️ <span class="wishlist-badge" id="wishlistCount">0</span></a>
+                <button type="button" class="theme-toggle-btn" id="themeToggleBtn" title="Dark / Light Mode">🌙</button>
+                <a href="admin.html" class="admin-icon" id="adminIcon" title="Admin Panel">🔐</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- FLIGHTS SECTION -->
+<section id="flights" class="section hidden">
+    <div class="flights-hero redesigned-page-hero">
+        <div class="hero-orbit orbit-one"></div>
+        <div class="hero-orbit orbit-two"></div>
+        <div class="flights-hero-inner">
+            <div class="flights-hero-text">
+                <span class="page-eyebrow">✈️ LIVE FLIGHT BOOKING</span>
+                <h1 class="flights-hero-title">Fly Anywhere, Anytime</h1>
+                <p class="flights-hero-subtitle">Compare real-time flights, book instantly, and get live updates on your journey — all in one place.</p>
+            </div>
+            <div class="flights-hero-visual">
+                <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&h=600&fit=crop&auto=format" alt="Airplane" loading="lazy" />
+            </div>
+        </div>
+    </div>
+
+    <div class="flight-search-form">
+        <h3>🔍 Search Flights</h3>
+        <div class="flight-form-grid">
+            <div class="form-group">
+                <label>From</label>
+                <input type="text" id="flightFrom" placeholder="e.g. Mumbai" list="cityList1" />
+                <datalist id="cityList1">
+                    <option value="Mumbai">
+                    <option value="Delhi">
+                    <option value="Bangalore">
+                    <option value="Chennai">
+                    <option value="Kolkata">
+                    <option value="Jaipur">
+                    <option value="Goa">
+                </datalist>
+            </div>
+            <div class="form-group">
+                <label>To</label>
+                <input type="text" id="flightTo" placeholder="e.g. Goa" list="cityList2" />
+                <datalist id="cityList2">
+                    <option value="Goa">
+                    <option value="Delhi">
+                    <option value="Mumbai">
+                    <option value="Bangalore">
+                    <option value="Jaipur">
+                    <option value="Kolkata">
+                </datalist>
+            </div>
+            <div class="form-group">
+                <label>Departure Date</label>
+                <input type="date" id="flightDate" />
+            </div>
+            <div class="form-group">
+                <label>Passengers</label>
+                <select id="flightPassengers">
+                    <option value="1">1 Passenger</option>
+                    <option value="2">2 Passengers</option>
+                    <option value="3">3 Passengers</option>
+                    <option value="4">4 Passengers</option>
+                    <option value="5">5+ Passengers</option>
+                </select>
+            </div>
+        </div>
+        <button class="flight-search-btn" id="flightSearchBtn">🔍 Search Flights</button>
+    </div>
+
+    <div class="flight-results" id="flightResults">
+        <div class="empty-results">✈️ Enter your journey details and search for flights</div>
+    </div>
+</section>
+
+<!-- HOTELS SECTION -->
+<section id="hotels" class="section hidden">
+    <div class="hotels-hero redesigned-page-hero">
+        <div class="hero-orbit orbit-one"></div>
+        <div class="hero-orbit orbit-two"></div>
+        <div class="hotels-hero-inner">
+            <div class="hotels-hero-text">
+                <span class="page-eyebrow">🏨 LIVE HOTEL BOOKING</span>
+                <h1 class="hotels-hero-title">Stay Comfortable, Everywhere</h1>
+                <p class="hotels-hero-subtitle">Find verified hotels, compare live prices, and book your perfect stay — with instant confirmation.</p>
+            </div>
+            <div class="hotels-hero-visual">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop&auto=format" alt="Hotel" loading="lazy" />
+            </div>
+        </div>
+    </div>
+
+    <div class="hotel-search-form">
+        <h3>🔍 Search Hotels</h3>
+        <div class="hotel-form-grid">
+            <div class="form-group">
+                <label>City</label>
+                <input type="text" id="hotelCity" placeholder="e.g. Goa" list="cityList3" />
+                <datalist id="cityList3">
+                    <option value="Goa">
+                    <option value="Mumbai">
+                    <option value="Delhi">
+                    <option value="Bangalore">
+                    <option value="Jaipur">
+                    <option value="Paris">
+                    <option value="Dubai">
+                    <option value="Bali">
+                </datalist>
+            </div>
+            <div class="form-group">
+                <label>Check-in</label>
+                <input type="date" id="hotelCheckIn" />
+            </div>
+            <div class="form-group">
+                <label>Check-out</label>
+                <input type="date" id="hotelCheckOut" />
+            </div>
+            <div class="form-group">
+                <label>Guests</label>
+                <select id="hotelGuests">
+                    <option value="1">1 Guest</option>
+                    <option value="2">2 Guests</option>
+                    <option value="3">3 Guests</option>
+                    <option value="4">4 Guests</option>
+                    <option value="5">5+ Guests</option>
+                </select>
+            </div>
+        </div>
+        <button class="hotel-search-btn" id="hotelSearchBtn">🔍 Search Hotels</button>
+    </div>
+
+    <div class="hotel-results" id="hotelResults">
+        <div class="empty-results">🏨 Enter your stay details and search for hotels</div>
+    </div>
+</section>
+
+        <!-- HOME -->
+        <section id="home" class="section active">
+            <div class="slider-container">
+                <div class="slider-wrapper" id="sliderWrapper">
+                    <div class="slide active"><div class="slide-content"><div class="slide-text"><span class="slide-badge">🌴 Summer Sale</span><h2>Up to 40% OFF</h2><p>Beach Destinations & Resorts</p><a href="#" class="slide-btn" data-section="tours">Explore Tours →</a></div><div class="slide-image"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&h=300&fit=crop&auto=format" alt="Beach" loading="lazy" /></div></div></div>
+                    <div class="slide"><div class="slide-content"><div class="slide-text"><span class="slide-badge">⛰️ Mountain Escape</span><h2>Himalayan Treks</h2><p>Starting from ₹9,999</p><a href="#" class="slide-btn" data-section="tours">Explore →</a></div><div class="slide-image"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=300&h=300&fit=crop&auto=format" alt="Mountain" loading="lazy" /></div></div></div>
+                    <div class="slide"><div class="slide-content"><div class="slide-text"><span class="slide-badge">🏙️ City Tours</span><h2>Explore Indian Cities</h2><p>Cultural & Heritage Tours</p><a href="#" class="slide-btn" data-section="tours">View Deals →</a></div><div class="slide-image"><img src="images/jaipur.png" alt="City" loading="lazy" /></div></div></div>
+                    <div class="slide"><div class="slide-content"><div class="slide-text"><span class="slide-badge">🧗 Adventure</span><h2>Adventure Sports</h2><p>Rafting, Paragliding & More</p><a href="#" class="slide-btn" data-section="tours">Book Now →</a></div><div class="slide-image"><img src="images/rafting.png" alt="Adventure" loading="lazy" /></div></div></div>
+                    <div class="slide"><div class="slide-content"><div class="slide-text"><span class="slide-badge">🗼 Europe Special</span><h2>Paris, France</h2><p>Romance & Eiffel Tower</p><a href="#" class="slide-btn" data-section="tours">Explore Paris →</a></div><div class="slide-image"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=300&h=300&fit=crop&auto=format" alt="Paris" loading="lazy" /></div></div></div>
+                    <div class="slide"><div class="slide-content"><div class="slide-text"><span class="slide-badge">🗽 USA Special</span><h2>New York</h2><p>City That Never Sleeps</p><a href="#" class="slide-btn" data-section="tours">Explore NYC →</a></div><div class="slide-image"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=300&h=300&fit=crop&auto=format" alt="New York" loading="lazy" /></div></div></div>
+                    <div class="slide"><div class="slide-content"><div class="slide-text"><span class="slide-badge">🏯 Asia Special</span><h2>Tokyo, Japan</h2><p>Cherry Blossoms & Tech</p><a href="#" class="slide-btn" data-section="tours">Explore Tokyo →</a></div><div class="slide-image"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=300&h=300&fit=crop&auto=format" alt="Tokyo" loading="lazy" /></div></div></div>
+                    <div class="slide"><div class="slide-content"><div class="slide-text"><span class="slide-badge">🏝️ Island Special</span><h2>Bali, Indonesia</h2><p>Beaches & Temples</p><a href="#" class="slide-btn" data-section="tours">Explore Bali →</a></div><div class="slide-image"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=300&h=300&fit=crop&auto=format" alt="Bali" loading="lazy" /></div></div></div>
+                </div>
+                <button class="slider-btn prev-btn" id="prevSlide">❮</button>
+                <button class="slider-btn next-btn" id="nextSlide">❯</button>
+                <div class="slider-dots" id="sliderDots"></div>
+            </div>
+
+            <div class="hero-new">
+                <div class="hero-bg-visual">
+                    <div class="floating-plane-3d" id="plane3d">✈️</div>
+                    <div class="floating-cloud-3d cloud-3d-1">☁️</div>
+                    <div class="floating-cloud-3d cloud-3d-2">☁️</div>
+                    <div class="floating-cloud-3d cloud-3d-3">☁️</div>
+                    <div class="floating-star-3d star-3d-1">✦</div>
+                    <div class="floating-star-3d star-3d-2">✦</div>
+                    <div class="floating-star-3d star-3d-3">✦</div>
+                    <div class="floating-star-3d star-3d-4">✦</div>
+                </div>
+                <div class="hero-new-content">
+                    <span class="hero-badge" data-i18n="hero.badge">🌍 Your Journey Begins Here</span>
+                    <h1 class="hero-title" data-i18n="hero.title" data-i18n-html="true">Explore the <span class="hero-highlight">World</span>,<br/>One City at a Time</h1>
+                    <p class="hero-subtitle" data-i18n="hero.subtitle">500+ destinations across India and the world — beaches, mountains, cities, and adventures await.</p>
+                    <div class="hero-search">
+                        <div class="hero-search-icon">🔍</div>
+                        <input type="text" id="heroSearchInput" placeholder="Where do you want to go?" data-i18n-placeholder="hero.searchPlaceholder" autocomplete="off" />
+                        <button type="button" class="hero-mic-btn" id="heroMicBtn" title="Voice Search">🎤</button>
+                        <button type="button" class="hero-search-btn" id="heroSearchBtn" data-i18n="hero.searchBtn">Search</button>
+                    </div>
+                    <div class="quick-chips">
+                        <button class="quick-chip" data-category="beach">🌴 Beach</button>
+                        <button class="quick-chip" data-category="mountain">⛰️ Mountain</button>
+                        <button class="quick-chip" data-category="city">🏙️ City</button>
+                        <button class="quick-chip" data-category="cultural">🏛️ Cultural</button>
+                        <button class="quick-chip" data-category="adventure">🧗 Adventure</button>
+                    </div>
+                    <div class="hero-stats-new">
+                        <div class="hero-stat"><span class="hero-stat-number">50K+</span><span class="hero-stat-label" data-i18n="hero.stat1Label">Happy Travelers</span></div>
+                        <div class="hero-stat"><span class="hero-stat-number">500+</span><span class="hero-stat-label" data-i18n="hero.stat2Label">Destinations</span></div>
+                        <div class="hero-stat"><span class="hero-stat-number">98%</span><span class="hero-stat-label" data-i18n="hero.stat3Label">Satisfaction</span></div>
+                    </div>
+                </div>
+                <div class="hero-globe-wrapper">
+                    <div class="hero-globe-3d" id="heroGlobe">
+                        <div class="globe-ring-globe"></div>
+                        <div class="globe-sphere-3d">
+                            <div class="globe-map"></div>
+                            <div class="globe-clouds"></div>
+                            <div class="globe-shine"></div>
+                        </div>
+                        <span class="globe-pin-3d pin-3d-1" title="Paris">📍</span>
+                        <span class="globe-pin-3d pin-3d-2" title="New York">📍</span>
+                        <span class="globe-pin-3d pin-3d-3" title="Tokyo">📍</span>
+                        <span class="globe-pin-3d pin-3d-4" title="Bali">📍</span>
+                        <span class="globe-pin-3d pin-3d-5" title="Goa">📍</span>
+                    </div>
+                </div>
+                <div class="scroll-indicator" data-i18n="hero.scroll">⬇️ Scroll to explore</div>
+            </div>
+
+            <!-- PWA INSTALL BANNER -->
+<div id="pwaInstallBanner" class="pwa-install-banner" style="display: none;">
+    <div class="pwa-install-content">
+        <div class="pwa-install-icon">📱</div>
+        <div class="pwa-install-text">
+            <strong>Install Explore World App</strong>
+            <small>Book tours offline, faster access, no browser needed!</small>
+        </div>
+        <div class="pwa-install-buttons">
+            <button class="pwa-install-btn" onclick="installPWA()">📥 Install</button>
+            <button class="pwa-dismiss-btn" onclick="dismissPWA()">✕</button>
+        </div>
+    </div>
+</div>
+
+            <div class="section-block">
+                <h2 class="section-title" data-i18n="cat.title">Explore by Category</h2>
+                <p class="section-subtitle" data-i18n="cat.subtitle">Pick your vibe — thousands of tours, one destination</p>
+                <div class="category-explorer">
+                    <div class="category-card" data-category="beach"><div class="category-icon">🏖️</div><h3 data-i18n="cat.beaches">Beaches</h3><p>45 tours</p></div>
+                    <div class="category-card" data-category="mountain"><div class="category-icon">⛰️</div><h3 data-i18n="cat.mountains">Mountains</h3><p>32 tours</p></div>
+                    <div class="category-card" data-category="city"><div class="category-icon">🏙️</div><h3 data-i18n="cat.cities">Cities</h3><p>28 tours</p></div>
+                    <div class="category-card" data-category="cultural"><div class="category-icon">🏛️</div><h3 data-i18n="cat.cultural">Cultural</h3><p>38 tours</p></div>
+                    <div class="category-card" data-category="adventure"><div class="category-icon">🧗</div><h3 data-i18n="cat.adventure">Adventure</h3><p>25 tours</p></div>
+                    <div class="category-card" data-category="all"><div class="category-icon">🌍</div><h3 data-i18n="cat.international">International</h3><p>24 tours</p></div>
+                </div>
+            </div>
+
+            <div class="section-block live-tools-section">
+                <div class="live-tools-head">
+                    <div>
+                        <span class="section-kicker" data-i18n="live.kicker">LIVE TRAVEL TOOLS</span>
+                        <h2 class="section-title" data-i18n="live.title">Plan With Live Information</h2>
+                        <p class="section-subtitle" data-i18n="live.subtitle">Real-time weather and a live travel calendar, right on the homepage.</p>
+                    </div>
+                    <div class="live-now-pill"><span></span> LIVE</div>
+                </div>
+                <div class="live-tools-grid">
+                    <div class="live-weather-card">
+                        <div class="live-tool-title"><span data-i18n="live.weather">🌤️ Live Weather</span><button id="weatherLocationBtn" class="mini-live-btn" data-i18n="live.useLocation">📍 Use my location</button></div>
+                        <div class="weather-search-row"><input id="weatherCityInput" type="text" placeholder="Enter city, e.g. Jaipur" data-i18n-placeholder="live.cityPlaceholder" autocomplete="off"><button id="weatherSearchBtn" data-i18n="live.search">Search</button></div>
+                        <div id="weatherResult" class="weather-result"><div class="weather-icon">🌍</div><div><strong data-i18n="live.weatherLoading">Checking live weather…</strong><p data-i18n="live.weatherHint">Search a city or use your location.</p></div></div>
+                    </div>
+                    <div class="live-calendar-card">
+                        <div class="live-tool-title"><span data-i18n="live.calendar">📅 Live Calendar</span><div class="calendar-controls"><button id="calendarPrev" aria-label="Previous month">‹</button><strong id="calendarMonth"></strong><button id="calendarNext" aria-label="Next month">›</button></div></div>
+                        <div class="calendar-weekdays"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+                        <div id="calendarGrid" class="calendar-grid"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-block">
+                <h2 class="section-title" data-i18n="trending.title">🔥 Trending This Week</h2>
+                <p class="section-subtitle" data-i18n="trending.subtitle">Most booked destinations right now</p>
+                <div class="trending-wrapper">
+                    <button class="trending-arrow left" id="trendingLeft">❮</button>
+                    <div class="trending-scroll" id="trendingScroll"></div>
+                    <button class="trending-arrow right" id="trendingRight">❯</button>
+                </div>
+            </div>
+
+            <div class="section-block">
+                <h2 class="section-title" data-i18n="intl.title">🌍 Top International Tours</h2>
+                <p class="section-subtitle" data-i18n="intl.subtitle">Fly beyond borders — explore the world</p>
+                <div class="region-tabs">
+                    <button class="region-tab active" data-region="europe" data-i18n="intl.europe">🗼 Europe</button>
+                    <button class="region-tab" data-region="americas" data-i18n="intl.americas">🗽 Americas</button>
+                    <button class="region-tab" data-region="asia" data-i18n="intl.asia">🏯 Asia</button>
+                    <button class="region-tab" data-region="africa" data-i18n="intl.africa">🦁 Africa</button>
+                    <button class="region-tab" data-region="oceania" data-i18n="intl.oceania">🦘 Oceania</button>
+                </div>
+                <div class="international-grid" id="internationalGrid"></div>
+            </div>
+
+            <!-- AI TRAVEL TOOLS SECTION -->
+<div class="section-block ai-tools-section">
+    <div class="ai-tools-header">
+        <span class="section-kicker">🤖 AI-POWERED TRAVEL TOOLS</span>
+        <h2 class="section-title">Plan Smarter With AI</h2>
+        <p class="section-subtitle">Get instant AI-powered travel plans, packing lists, and photography guides</p>
+    </div>
+
+    <div class="ai-tools-grid">
+        <!-- AI Trip Planner -->
+        <div class="ai-tool-card">
+            <div class="ai-tool-icon">🗺️</div>
+            <h3>AI Trip Planner</h3>
+            <p>Tell us your budget & days — AI plans the perfect itinerary</p>
+            <button class="ai-tool-btn" onclick="openAITripPlanner()">Plan My Trip →</button>
+        </div>
+
+        <!-- AI Packing Assistant -->
+        <div class="ai-tool-card">
+            <div class="ai-tool-icon">🎒</div>
+            <h3>AI Packing Assistant</h3>
+            <p>Smart packing list based on destination & weather</p>
+            <button class="ai-tool-btn" onclick="openAIPacking()">Get Packing List →</button>
+        </div>
+
+        <!-- AI Photography Guide -->
+        <div class="ai-tool-card">
+            <div class="ai-tool-icon">📸</div>
+            <h3>AI Photography Guide</h3>
+            <p>Best photo spots, timing & pose ideas for any destination</p>
+            <button class="ai-tool-btn" onclick="openAIPhotography()">Get Photo Guide →</button>
+        </div>
+    </div>
+</div>
+
+<!-- AI MODAL (common for all 3 tools) -->
+<div id="aiToolModal" class="ai-tool-modal">
+    <div class="ai-tool-modal-content">
+        <button class="close-popup" onclick="closeAIToolModal()">✕</button>
+        <div id="aiToolModalBody"></div>
+    </div>
+</div>
+
+<!-- REELS VIDEO FEED SECTION -->
+<div class="section-block reels-section">
+    <div class="reels-header">
+        <span class="section-kicker">🎥 TRAVEL REELS</span>
+        <h2 class="section-title">Explore in Motion</h2>
+        <p class="section-subtitle">Swipe through amazing destinations in short videos</p>
+    </div>
+
+    <div class="reels-wrapper">
+        <button class="reels-arrow left" onclick="scrollReels(-1)">❮</button>
+        <div class="reels-scroll" id="reelsScroll">
+            <!-- Rendered by JS -->
+        </div>
+        <button class="reels-arrow right" onclick="scrollReels(1)">❯</button>
+    </div>
+</div>
+
+<!-- INSTAGRAM-STYLE FEED SECTION -->
+<div class="section-block insta-feed-section">
+    <div class="insta-feed-header">
+        <span class="section-kicker">📱 COMMUNITY FEED</span>
+        <h2 class="section-title">Travelers Like You</h2>
+        <p class="section-subtitle">Real photos from real travelers using #ExploreWorld</p>
+    </div>
+
+    <div class="insta-feed-grid" id="instaFeedGrid">
+        <!-- Rendered by JS -->
+    </div>
+
+    <div class="insta-upload-cta">
+        <p>📸 Share your travel photos with <strong>#ExploreWorld</strong></p>
+        <button class="insta-upload-btn" onclick="openInstaUpload()">Upload Your Photo</button>
+    </div>
+</div>
+
+<!-- INSTAGRAM UPLOAD MODAL -->
+<div id="instaUploadModal" class="insta-upload-modal">
+    <div class="insta-upload-content">
+        <button class="close-popup" onclick="closeInstaUpload()">✕</button>
+        <h3>📸 Share Your Travel Photo</h3>
+        <p>Upload a photo from your trip and inspire other travelers</p>
+        <div class="form-group">
+            <label>Photo</label>
+            <input type="file" id="instaPhotoInput" accept="image/*" />
+        </div>
+        <div class="form-group">
+            <label>Caption</label>
+            <input type="text" id="instaCaptionInput" placeholder="e.g. Sunset at Goa beach 🌅" maxlength="100" />
+        </div>
+        <div class="form-group">
+            <label>Location</label>
+            <input type="text" id="instaLocationInput" placeholder="e.g. Goa, India" maxlength="50" />
+        </div>
+        <button class="insta-submit-btn" onclick="submitInstaPhoto()">📤 Post to Feed</button>
+    </div>
+</div>
+
+<!-- 360° VIRTUAL PREVIEW MODAL -->
+<div id="virtual360Modal" class="virtual-360-modal">
+    <div class="virtual-360-content">
+        <button class="close-popup" onclick="closeVirtual360()">✕</button>
+        <h3 id="virtual360Title">🌍 360° Virtual Preview</h3>
+        <div class="virtual-360-viewer" id="virtual360Viewer">
+            <div class="virtual-360-image" id="virtual360Image"></div>
+            <div class="virtual-360-hint">🖱️ Drag to explore · 360° view</div>
+        </div>
+        <p id="virtual360Info">Interactive panoramic view</p>
+    </div>
+</div>
+
+<!-- INTERACTIVE WORLD MAP SECTION -->
+<div class="section-block world-map-section">
+    <div class="section-heading-center">
+        <span class="section-kicker">🗺️ EXPLORE THE WORLD</span>
+        <h2 class="section-title">Interactive World Map</h2>
+        <p class="section-subtitle">Click on a region to discover tours</p>
+    </div>
+    <div class="world-map-container">
+        <div class="world-map-grid" id="worldMapGrid">
+            <div class="map-region" data-region="india" onclick="filterByRegion('india')">
+                <div class="map-region-icon">🇮🇳</div>
+                <div class="map-region-name">India</div>
+                <div class="map-region-count">18 tours</div>
+            </div>
+            <div class="map-region" data-region="europe" onclick="filterByRegion('europe')">
+                <div class="map-region-icon">🇪🇺</div>
+                <div class="map-region-name">Europe</div>
+                <div class="map-region-count">6 tours</div>
+            </div>
+            <div class="map-region" data-region="americas" onclick="filterByRegion('americas')">
+                <div class="map-region-icon">🌎</div>
+                <div class="map-region-name">Americas</div>
+                <div class="map-region-count">4 tours</div>
+            </div>
+            <div class="map-region" data-region="asia" onclick="filterByRegion('asia')">
+                <div class="map-region-icon">🌏</div>
+                <div class="map-region-name">Asia</div>
+                <div class="map-region-count">6 tours</div>
+            </div>
+            <div class="map-region" data-region="africa" onclick="filterByRegion('africa')">
+                <div class="map-region-icon">🌍</div>
+                <div class="map-region-name">Africa</div>
+                <div class="map-region-count">3 tours</div>
+            </div>
+            <div class="map-region" data-region="oceania" onclick="filterByRegion('oceania')">
+                <div class="map-region-icon">🦘</div>
+                <div class="map-region-name">Oceania</div>
+                <div class="map-region-count">2 tours</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SURPRISE ME + FLASH DEALS SECTION -->
+<div class="section-block surprise-deals-section">
+    <div class="surprise-deals-grid">
+        <!-- SURPRISE ME -->
+        <div class="surprise-card">
+            <div class="surprise-card-inner">
+                <div class="surprise-icon">🎲</div>
+                <h3>Surprise Me!</h3>
+                <p>Can't decide? Let us pick a random destination for you</p>
+                <button class="surprise-btn" onclick="surpriseMe()">Roll the Dice 🎲</button>
+                <div id="surpriseResult" class="surprise-result"></div>
+            </div>
+        </div>
+
+        <!-- FLASH DEALS COUNTDOWN -->
+        <div class="flash-deals-card">
+            <div class="flash-deals-header">
+                <span class="flash-icon">⚡</span>
+                <h3>Flash Deal Ends In</h3>
+            </div>
+            <div class="countdown-timer" id="flashCountdown">
+                <div class="countdown-box">
+                    <span id="cdHours">00</span>
+                    <small>Hours</small>
+                </div>
+                <div class="countdown-box">
+                    <span id="cdMinutes">00</span>
+                    <small>Minutes</small>
+                </div>
+                <div class="countdown-box">
+                    <span id="cdSeconds">00</span>
+                    <small>Seconds</small>
+                </div>
+            </div>
+            <div class="flash-deal-info">
+                <p>🎁 Use code <strong>FLASH20</strong> for extra 20% off</p>
+            </div>
+            <button class="flash-deal-btn" onclick="scrollToTours()">Grab the Deal →</button>
+        </div>
+    </div>
+</div>
+
+<!-- TRAVEL PERSONALITY QUIZ SECTION -->
+<div class="section-block quiz-section">
+    <div class="section-heading-center">
+        <span class="section-kicker">🎯 DISCOVER YOURSELF</span>
+        <h2 class="section-title">What Type of Traveler Are You?</h2>
+        <p class="section-subtitle">Take this quick quiz and get personalized tour recommendations</p>
+    </div>
+
+    <div class="quiz-container" id="quizContainer">
+        <!-- Rendered by JS -->
+    </div>
+</div>
+
+            <div class="section-block">
+                <h2 class="section-title" data-i18n="faq.title">❓ Frequently Asked Questions</h2>
+                <p class="section-subtitle" data-i18n="faq.subtitle">Everything you need to know before booking</p>
+                <div class="faq-container">
+                    <div class="faq-item"><button class="faq-question"><span>How do I book a tour on Explore World?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>Simply browse our tours, click "Book Now" on any tour you like, fill in your traveler details, choose your payment method, and confirm. You'll receive instant confirmation with a QR code ticket!</p></div></div>
+                    <div class="faq-item"><button class="faq-question"><span>What payment methods do you accept?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>We accept Credit/Debit Cards, Net Banking, UPI (with QR code), and Cash on Delivery. All payments are 100% secure and encrypted.</p></div></div>
+                    <div class="faq-item"><button class="faq-question"><span>Can I cancel my booking?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes! Free cancellation is available up to 7 days before your tour start date. For cancellations within 7 days, a partial refund is provided.</p></div></div>
+                    <div class="faq-item"><button class="faq-question"><span>Do you offer group discounts?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>Absolutely! Book for 5 or more travelers and get an automatic 10% discount on the total tour price. No coupon code needed!</p></div></div>
+                    <div class="faq-item"><button class="faq-question"><span>Is there 24/7 customer support?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes! Our support team is available 24/7 via chat, email, and phone. You can also use our TravelBot chatbot for instant answers.</p></div></div>
+                    <div class="faq-item"><button class="faq-question"><span>Do I need to create an account to book?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes, a free account is required to book tours, add to wishlist, or send enquiries. Sign up takes just 30 seconds!</p></div></div>
+                    <div class="faq-item"><button class="faq-question"><span>How can I track my booking?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>After booking, you can view all your bookings in the Profile → Bookings section. Each booking has live tracking showing its current status.</p></div></div>
+                    <div class="faq-item"><button class="faq-question"><span>What about travel insurance?</span><span class="faq-icon">+</span></button><div class="faq-answer"><p>We partner with top insurance providers to offer comprehensive travel coverage. You can add insurance during booking.</p></div></div>
+                </div>
+            </div>
+
+            <div class="section-block">
+                <h2 class="section-title" data-i18n="reviews.title">💬 What Our Travelers Say</h2>
+                <p class="section-subtitle" data-i18n="reviews.subtitle">Real experiences from real adventurers</p>
+                <div class="reviews-wrapper">
+                    <div class="reviews-scroll" id="reviewsScroll">
+                        <div class="review-card"><div class="review-header"><div class="review-avatar">👩</div><div><h4>Priya Sharma</h4><p>Mumbai</p></div></div><div class="review-stars">★★★★★</div><p class="review-text">"Bali trip was magical! Explore World made everything seamless."</p></div>
+                        <div class="review-card"><div class="review-header"><div class="review-avatar">👨</div><div><h4>Rahul Verma</h4><p>Delhi</p></div></div><div class="review-stars">★★★★★</div><p class="review-text">"Himalayan trek was life-changing. Guides were professional."</p></div>
+                        <div class="review-card"><div class="review-header"><div class="review-avatar">👩‍🦰</div><div><h4>Ananya Iyer</h4><p>Bangalore</p></div></div><div class="review-stars">★★★★★</div><p class="review-text">"Paris trip was a dream come true! 5 stars!"</p></div>
+                        <div class="review-card"><div class="review-header"><div class="review-avatar">🧑</div><div><h4>Arjun Mehta</h4><p>Pune</p></div></div><div class="review-stars">★★★★★</div><p class="review-text">"Tokyo was incredible — cherry blossoms, food, tech!"</p></div>
+                        <div class="review-card"><div class="review-header"><div class="review-avatar">👩‍🦱</div><div><h4>Sneha Patel</h4><p>Ahmedabad</p></div></div><div class="review-stars">★★★★★</div><p class="review-text">"Kerala backwaters were so peaceful."</p></div>
+                        <div class="review-card"><div class="review-header"><div class="review-avatar">👨‍🦱</div><div><h4>Vikram Singh</h4><p>Jaipur</p></div></div><div class="review-stars">★★★★★</div><p class="review-text">"New York City tour was perfect!"</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about" class="section hidden about-page">
+            <div class="about-hero redesigned-page-hero">
+                <div class="hero-orbit orbit-one"></div>
+                <div class="hero-orbit orbit-two"></div>
+                <div class="about-hero-inner">
+                    <div class="about-hero-text">
+                        <span class="page-eyebrow" data-i18n="about.eyebrow">🌍 TRAVEL WITHOUT LIMITS</span>
+                        <h1 class="about-hero-title" data-i18n="about.heroTitle">We Turn Places Into Stories</h1>
+                        <p class="about-hero-subtitle" data-i18n="about.heroSubtitle">A modern travel experience built around discovery, simple booking and unforgettable memories. From the beaches of Goa to the streets of Paris — every journey is designed to feel effortless.</p>
+                        <div class="about-hero-actions">
+                            <button class="hero-action-btn" data-section="tours" data-i18n="about.exploreBtn">Explore Tours →</button>
+                            <span data-i18n="about.since">Since 2020 · 50K+ travelers</span>
+                        </div>
+                    </div>
+                    <div class="about-hero-image">
+                        <img src="images/about1.png" alt="Traveler exploring the world" loading="lazy" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-intro redesigned-about-intro">
+                <div class="about-intro-text">
+                    <span class="section-kicker" data-i18n="about.whoKicker">WHO WE ARE</span>
+                    <h2 data-i18n="about.whoTitle" data-i18n-html="true">Travel should feel <span>exciting, not complicated.</span></h2>
+                    <p data-i18n="about.whoPara1">Explore World connects travelers with handpicked experiences across India and the world. We combine beautiful destinations, clear pricing and easy digital booking into one simple journey.</p>
+                    <p data-i18n="about.whoPara2">From quick weekend escapes to long international adventures, every tour is curated by people who actually love to travel. You get real photos, honest pricing, verified operators and support that stays with you before, during and after the trip.</p>
+                    <div class="about-feature-row">
+                        <span>✓ Verified experiences</span>
+                        <span>✓ Digital booking</span>
+                        <span>✓ 24/7 support</span>
+                        <span>✓ Easy refunds</span>
+                    </div>
+                </div>
+                <div class="about-intro-image">
+                    <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=700&h=550&fit=crop&auto=format" alt="Friends traveling together" loading="lazy" />
+                </div>
+            </div>
+
+            <div class="about-intro about-intro-reverse">
+                <div class="about-intro-image">
+                    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=700&h=550&fit=crop&auto=format" alt="Mountain adventure" loading="lazy" />
+                </div>
+                <div class="about-intro-text">
+                    <span class="section-kicker" data-i18n="about.missionKicker">OUR MISSION</span>
+                    <h2 data-i18n="about.missionTitle" data-i18n-html="true">Make every trip <span>simple and memorable.</span></h2>
+                    <p data-i18n="about.missionPara1">We believe great travel should not require endless research. That is why every tour on Explore World is designed to be easy to understand, easy to compare and easy to book — even on your phone during a bus ride.</p>
+                    <p data-i18n="about.missionPara2">We handle the boring parts so you can focus on the fun ones: what to see, what to eat and where to make your next memory.</p>
+                    <div class="about-feature-row">
+                        <span>🗺️ Curated routes</span>
+                        <span>💰 Transparent pricing</span>
+                        <span>📱 Mobile friendly</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-values">
+                <div class="section-heading-left"><span class="section-kicker" data-i18n="about.dnaKicker">OUR DNA</span><h2 class="section-title" data-i18n="about.dnaTitle">Built for curious explorers</h2></div>
+                <div class="values-grid">
+                    <div class="value-card"><div class="value-icon">🧭</div><h3 data-i18n="about.discover">Discover</h3><p data-i18n="about.discoverDesc">Find meaningful places and experiences beyond the usual checklist.</p></div>
+                    <div class="value-card"><div class="value-icon">✨</div><h3 data-i18n="about.experience">Experience</h3><p data-i18n="about.experienceDesc">Travel with carefully curated itineraries and destination-focused details.</p></div>
+                    <div class="value-card"><div class="value-icon">🤝</div><h3 data-i18n="about.trust">Trust</h3><p data-i18n="about.trustDesc">Transparent information, secure booking flow and helpful support.</p></div>
+                    <div class="value-card"><div class="value-icon">💚</div><h3 data-i18n="about.care">Care</h3><p data-i18n="about.careDesc">Every interaction is designed around the traveler, before and after booking.</p></div>
+                </div>
+            </div>
+
+            <div class="about-stats redesigned-stats">
+                <div class="about-stat"><span class="about-stat-number" data-target="50000" data-suffix="+">0</span><span class="about-stat-label" data-i18n="about.happyTravelers">Happy Travelers</span></div>
+                <div class="about-stat"><span class="about-stat-number" data-target="500" data-suffix="+">0</span><span class="about-stat-label" data-i18n="about.destinations">Destinations</span></div>
+                <div class="about-stat"><span class="about-stat-number" data-target="50" data-suffix="+">0</span><span class="about-stat-label" data-i18n="about.countries">Countries</span></div>
+                <div class="about-stat"><span class="about-stat-number" data-target="4.9" data-suffix="★" data-decimal="1">0</span><span class="about-stat-label" data-i18n="about.avgRating">Average Rating</span></div>
+            </div>
+
+            <div class="about-why">
+                <div class="section-heading-left"><span class="section-kicker" data-i18n="about.whyKicker">WHY EXPLORE WORLD</span><h2 class="section-title" data-i18n="about.whyTitle">Everything you need for the journey</h2></div>
+                <div class="why-grid">
+                    <div class="why-item"><div class="why-icon">🔎</div><h4 data-i18n="about.clearInfo">Clear Information</h4><p data-i18n="about.clearInfoDesc">Destination, duration, pricing and ratings in one place.</p></div>
+                    <div class="why-item"><div class="why-icon">💳</div><h4 data-i18n="about.easyBooking">Easy Booking</h4><p data-i18n="about.easyBookingDesc">Simple traveler details, payment options and instant confirmation.</p></div>
+                    <div class="why-item"><div class="why-icon">📍</div><h4 data-i18n="about.liveUpdates">Live Updates</h4><p data-i18n="about.liveUpdatesDesc">Keep track of booking status from your profile.</p></div>
+                    <div class="why-item"><div class="why-icon">💬</div><h4 data-i18n="about.travelBot">TravelBot</h4><p data-i18n="about.travelBotDesc">Get quick travel answers and voice assistance while you explore.</p></div>
+                    <div class="why-item"><div class="why-icon">❤️</div><h4 data-i18n="about.wishlist">Wishlist</h4><p data-i18n="about.wishlistDesc">Save tours you love and come back whenever you're ready.</p></div>
+                    <div class="why-item"><div class="why-icon">🎫</div><h4 data-i18n="about.digitalTicket">Digital Ticket</h4><p data-i18n="about.digitalTicketDesc">Receive a digital booking ticket after confirmation.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TOURS -->
+        <section id="tours" class="section hidden">
+            <div class="tours-hero redesigned-page-hero tours-redesigned-hero">
+                <div class="tours-hero-copy">
+                    <span class="page-eyebrow" data-i18n="tours.eyebrow">✈️ CURATED FOR YOU</span>
+                    <h1 class="tours-hero-title" data-i18n="tours.title">Your Next Story Starts Here</h1>
+                    <p class="tours-hero-subtitle" data-i18n="tours.subtitle">Explore real destinations, compare tours and book your next escape in a few clicks.</p>
+                    <div class="tour-hero-pills"><span data-i18n="tours.pill1">🌏 39 destinations</span><span data-i18n="tours.pill2">⭐ Rated by travelers</span><span data-i18n="tours.pill3">🔒 Secure booking</span></div>
+                </div>
+                <div class="tours-hero-visual"><img src="images/tour2.png" alt="Travel destination" loading="lazy"></div>
+            </div>
+            <div class="category-tabs">
+                <button class="cat-btn active" data-category="all" data-i18n="tours.allBtn">All Tours</button>
+                <button class="cat-btn" data-category="beach">🏖️ Beach</button>
+                <button class="cat-btn" data-category="mountain">⛰️ Mountain</button>
+                <button class="cat-btn" data-category="city">🏙️ City</button>
+                <button class="cat-btn" data-category="cultural">🏛️ Cultural</button>
+                <button class="cat-btn" data-category="adventure">🧗 Adventure</button>
+            </div>
+            <div class="filter-row">
+                <div class="filter-group"><label data-i18n="tours.priceLabel">Price:</label><select id="priceFilter"><option value="all" data-i18n="tours.priceAll">All</option><option value="0-10000">Under ₹10,000</option><option value="10000-30000">₹10,000 - ₹30,000</option><option value="30000-50000">₹30,000 - ₹50,000</option><option value="50000-100000">₹50,000 - ₹1,00,000</option><option value="100000+">Above ₹1,00,000</option></select></div>
+                <div class="filter-group"><label data-i18n="tours.durationLabel">Duration:</label><select id="durationFilter"><option value="all" data-i18n="tours.durationAll">All</option><option value="1-3">1-3 Days</option><option value="4-7">4-7 Days</option><option value="8-14">8-14 Days</option><option value="15+">15+ Days</option></select></div>
+                <div class="filter-group"><label data-i18n="tours.sortLabel">Sort:</label><select id="sortFilter"><option value="default" data-i18n="tours.sortDefault">Default</option><option value="price-low" data-i18n="tours.sortPriceLow">Price: Low to High</option><option value="price-high" data-i18n="tours.sortPriceHigh">Price: High to Low</option><option value="rating" data-i18n="tours.sortRating">Rating</option></select></div>
+            </div>
+            <div class="tour-grid" id="tourGrid"></div>
+        </section>
+
+        <!-- OFFERS -->
+        <section id="offers" class="section hidden">
+            <h2>🔥 Special Offers</h2>
+            <div class="offer-tabs">
+                <button class="tab-btn active" data-tab="seasonal">Seasonal</button>
+                <button class="tab-btn" data-tab="group">Group</button>
+                <button class="tab-btn" data-tab="lastminute">Last Minute</button>
+                <button class="tab-btn" data-tab="combo">Combo</button>
+            </div>
+            <div class="offer-tab-content active" id="seasonal">
+                <div class="offer-grid">
+                    <div class="offer-card"><div class="offer-badge">☀️ Summer Special</div><div class="offer-icon">☀️</div><h3>Summer Getaway</h3><p>Up to 40% OFF on beach destinations</p><div class="offer-details"><span>✅ Free Beach Activities</span><span>✅ 5 Star Resort</span><span>✅ All Meals Included</span></div><div class="offer-savings">Save ₹15,000</div></div>
+                    <div class="offer-card"><div class="offer-badge">❄️ Winter Special</div><div class="offer-icon">❄️</div><h3>Winter Wonderland</h3><p>Flat 35% OFF on mountain tours</p><div class="offer-details"><span>✅ Ski Equipment</span><span>✅ Cozy Cabins</span><span>✅ Free Hot Drinks</span></div><div class="offer-savings">Save ₹20,000</div></div>
+                    <div class="offer-card"><div class="offer-badge">🌸 Spring Deal</div><div class="offer-icon">🌸</div><h3>Spring Blooms</h3><p>Buy 2 Get 1 FREE on cultural tours</p><div class="offer-details"><span>✅ Guided Tours</span><span>✅ Photography Session</span><span>✅ Local Cuisine</span></div><div class="offer-savings">Save ₹8,000</div></div>
+                    <div class="offer-card"><div class="offer-badge">🎉 Festival Special</div><div class="offer-icon">🎉</div><h3>Festival Package</h3><p>Up to 50% OFF on special events</p><div class="offer-details"><span>✅ VIP Access</span><span>✅ Cultural Shows</span><span>✅ Free Souvenirs</span></div><div class="offer-savings">Save ₹10,000</div></div>
+                </div>
+            </div>
+            <div class="offer-tab-content" id="group">
+                <div class="offer-grid">
+                    <div class="offer-card group-card"><div class="offer-badge">👨‍👩‍👧 Family Package</div><div class="offer-icon">🏠</div><h3>Family Adventure</h3><p>Flat <strong>25% OFF</strong> for groups of 4+</p><div class="offer-details"><span>✅ Kids Free Activities</span><span>✅ Family Suites</span><span>✅ Custom Itinerary</span></div><div class="offer-savings">Save ₹12,000</div></div>
+                    <div class="offer-card group-card"><div class="offer-badge">👫 Couple Package</div><div class="offer-icon">💑</div><h3>Romantic Escape</h3><p>Buy 2 Get 1 FREE for couples</p><div class="offer-details"><span>✅ Candlelight Dinner</span><span>✅ Spa Treatment</span><span>✅ Private Tours</span></div><div class="offer-savings">Save ₹5,000</div></div>
+                    <div class="offer-card group-card"><div class="offer-badge">🎒 Student Package</div><div class="offer-icon">📚</div><h3>Student Travel</h3><p>Up to <strong>30% OFF</strong> for students</p><div class="offer-details"><span>✅ Group Discounts</span><span>✅ Educational Tours</span><span>✅ Hostel Stay</span></div><div class="offer-savings">Save ₹7,000</div></div>
+                    <div class="offer-card group-card"><div class="offer-badge">👥 Corporate Package</div><div class="offer-icon">🏢</div><h3>Corporate Retreat</h3><p>Special 20% OFF for companies</p><div class="offer-details"><span>✅ Team Building</span><span>✅ Conference Rooms</span><span>✅ Custom Packages</span></div><div class="offer-savings">Save ₹25,000</div></div>
+                </div>
+            </div>
+            <div class="offer-tab-content" id="lastminute">
+                <div class="offer-grid">
+                    <div class="offer-card lastminute-card"><div class="offer-badge">⚡ Flash Deal</div><div class="offer-icon">⏰</div><h3>Last Minute Beach</h3><p>Book within 48 hours and save 40%</p><div class="offer-details"><span>✅ 3 Days Beach Stay</span><span>✅ Free Airport Transfer</span><span>✅ Breakfast Included</span></div><div class="offer-savings">Save ₹9,000</div></div>
+                    <div class="offer-card lastminute-card"><div class="offer-badge">🔥 Hot Deal</div><div class="offer-icon">🔥</div><h3>Last Minute Mountain</h3><p>Limited slots at 35% discount</p><div class="offer-details"><span>✅ 5 Days Trek</span><span>✅ Guide Included</span><span>✅ Camping Gear</span></div><div class="offer-savings">Save ₹11,000</div></div>
+                    <div class="offer-card lastminute-card"><div class="offer-badge">🎯 Quick Deal</div><div class="offer-icon">🎯</div><h3>Last Minute City Tour</h3><p>Book 24 hours in advance</p><div class="offer-details"><span>✅ 2 Days City Tour</span><span>✅ Museum Tickets</span><span>✅ Local Guide</span></div><div class="offer-savings">Save ₹4,500</div></div>
+                    <div class="offer-card lastminute-card"><div class="offer-badge">💫 Urgent Deal</div><div class="offer-icon">💫</div><h3>Last Minute Adventure</h3><p>20% OFF on extreme sports</p><div class="offer-details"><span>✅ Paragliding</span><span>✅ Rafting</span><span>✅ Ziplining</span></div><div class="offer-savings">Save ₹6,000</div></div>
+                </div>
+            </div>
+            <div class="offer-tab-content" id="combo">
+                <div class="offer-grid">
+                    <div class="offer-card combo-card"><div class="offer-badge">🔄 Beach+City</div><div class="offer-icon">🏖️+🏙️</div><h3>Beach & City Combo</h3><p>Save 25% when you book both</p><div class="offer-details"><span>✅ 4 Days Beach</span><span>✅ 3 Days City</span><span>✅ Transfers Included</span></div><div class="offer-savings">Save ₹18,000</div></div>
+                    <div class="offer-card combo-card"><div class="offer-badge">🔄 Mountain+Adventure</div><div class="offer-icon">⛰️+🧗</div><h3>Mountain Adventure</h3><p>Save 30% on complete package</p><div class="offer-details"><span>✅ 5 Days Trek</span><span>✅ Adventure Sports</span><span>✅ Equipment Included</span></div><div class="offer-savings">Save ₹15,000</div></div>
+                    <div class="offer-card combo-card"><div class="offer-badge">🔄 Cultural+Food</div><div class="offer-icon">🏛️+🍜</div><h3>Culture & Food Tour</h3><p>Exclusive 20% combo discount</p><div class="offer-details"><span>✅ Heritage Sites</span><span>✅ Food Tours</span><span>✅ Cooking Class</span></div><div class="offer-savings">Save ₹10,000</div></div>
+                    <div class="offer-card combo-card"><div class="offer-badge">🔄 Relax+Explore</div><div class="offer-icon">🧘+🌍</div><h3>Relax & Explore Combo</h3><p>Wellness + Sightseeing package</p><div class="offer-details"><span>✅ Yoga Sessions</span><span>✅ Spa Treatments</span><span>✅ Sightseeing Tours</span></div><div class="offer-savings">Save ₹12,000</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROFILE -->
+        <section id="profile" class="section hidden">
+            <h2>👤 My Profile</h2>
+            <div class="profile-container">
+                <div class="profile-header">
+                    <div class="profile-avatar" id="profileAvatarDisplay">
+                        <span id="profileAvatarText">👤</span>
+                        <img id="profileAvatarImage" src="" alt="" style="display:none;" />
+                        <label class="profile-avatar-upload" for="avatarUpload" title="Change Photo">📷</label>
+                        <input type="file" id="avatarUpload" accept="image/*" style="display:none;" />
+                    </div>
+                    <div class="profile-info">
+                        <h3 id="profileName">Guest User</h3>
+                        <p id="profileEmail">-</p>
+                        <p id="profilePhone">-</p>
+                    </div>
+                </div>
+                <div class="profile-tabs">
+    <button class="profile-tab active" data-tab="bookings">📦 Bookings</button>
+    <button class="profile-tab" data-tab="flights">✈️ Flights</button>
+    <button class="profile-tab" data-tab="hotels">🏨 Hotels</button>
+    <button class="profile-tab" data-tab="payments">💳 Payments</button>
+    <button class="profile-tab" data-tab="addresses">📍 Addresses</button>
+    <button class="profile-tab" data-tab="dashboard">📊 Dashboard</button>
+    <button class="profile-tab" data-tab="settings">⚙️ Settings</button>
+</div>
+                <div class="profile-tab-content active" id="tab-bookings"><div id="userBookingsList"><p style="color:var(--text-light);text-align:center;padding:1.5rem;">No bookings yet.</p></div></div>
+                <div class="profile-tab-content" id="tab-payments"><div id="userPaymentsList"><p style="color:var(--text-light);text-align:center;padding:1.5rem;">No payments yet.</p></div></div>
+                <div class="profile-tab-content" id="tab-addresses">
+                    <div id="addressList"></div>
+                    <button class="add-address-btn" id="showAddAddress">+ Add New Address</button>
+                    <div id="addAddressForm" style="display:none; margin-top: var(--space-md);">
+                        <input type="text" id="newAddressLabel" placeholder="Label (Home, Office, etc.)" />
+                        <input type="text" id="newAddressDetail" placeholder="Address details" />
+                        <div style="display:flex; gap:var(--space-sm);"><button id="saveAddressBtn" class="create-account-btn" style="flex:1;">Save Address</button><button id="cancelAddressBtn" class="order-back-btn" style="flex:1;">Cancel</button></div>
+                    </div>
+                </div>
+                <!-- FLIGHTS TAB -->
+<div class="profile-tab-content" id="tab-flights">
+    <div id="userFlightsList">
+        <p style="color:var(--text-light);text-align:center;padding:1.5rem;">No flight bookings yet.</p>
+    </div>
+</div>
+
+<!-- HOTELS TAB -->
+<div class="profile-tab-content" id="tab-hotels">
+    <div id="userHotelsList">
+        <p style="color:var(--text-light);text-align:center;padding:1.5rem;">No hotel bookings yet.</p>
+    </div>
+</div>
+
+<!-- DASHBOARD TAB -->
+<div class="profile-tab-content" id="tab-dashboard">
+    <div class="user-dashboard">
+        <div class="dashboard-header">
+            <h3>📊 Your Travel Dashboard</h3>
+            <p>Overview of your travel journey with Explore World</p>
+        </div>
+
+        <div class="dashboard-stats-grid">
+            <div class="dashboard-stat-card">
+                <div class="dashboard-stat-icon">🎒</div>
+                <div class="dashboard-stat-number" id="statTotalTrips">0</div>
+                <div class="dashboard-stat-label">Total Trips</div>
+            </div>
+            <div class="dashboard-stat-card">
+                <div class="dashboard-stat-icon">💰</div>
+                <div class="dashboard-stat-number" id="statTotalSpend">₹0</div>
+                <div class="dashboard-stat-label">Total Spend</div>
+            </div>
+            <div class="dashboard-stat-card">
+                <div class="dashboard-stat-icon">📍</div>
+                <div class="dashboard-stat-number" id="statCitiesVisited">0</div>
+                <div class="dashboard-stat-label">Cities Visited</div>
+            </div>
+            <div class="dashboard-stat-card">
+                <div class="dashboard-stat-icon">⭐</div>
+                <div class="dashboard-stat-number" id="statAvgRating">0</div>
+                <div class="dashboard-stat-label">Avg Rating Given</div>
+            </div>
+        </div>
+
+        <div class="achievements-section">
+            <h3>🏆 Your Achievements</h3>
+            <div class="achievements-grid" id="achievementsGrid">
+                <!-- Rendered by JS -->
+            </div>
+        </div>
+
+        <div class="analytics-section">
+            <h3>📈 Travel Analytics</h3>
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <h4>💰 Money Spent</h4>
+                    <div class="analytics-bar">
+                        <div class="analytics-bar-fill" id="spendBarTrips" style="width: 0%"></div>
+                    </div>
+                    <p id="spendBreakdown">Trips: ₹0 · Flights: ₹0 · Hotels: ₹0</p>
+                </div>
+                <div class="analytics-card">
+                    <h4>🎯 Top Destination Type</h4>
+                    <div class="analytics-top" id="topCategory">No bookings yet</div>
+                    <p>Based on your tour bookings</p>
+                </div>
+                <div class="analytics-card">
+                    <h4>📅 Upcoming Trips</h4>
+                    <div class="analytics-top" id="upcomingTrips">0 trips</div>
+                    <p>Trips in next 30 days</p>
+                </div>
+                <div class="analytics-card">
+                    <h4>🎁 Total Savings</h4>
+                    <div class="analytics-top" id="totalSavings">₹0</div>
+                    <p>From discounts & offers</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                <div class="profile-tab-content" id="tab-settings">
+                    <div class="settings-item" id="editProfileBtn"><span>✏️ Edit Profile</span><span class="settings-arrow">→</span></div>
+                    <div class="settings-item" id="changePasswordBtn"><span>🔑 Change Password</span><span class="settings-arrow">→</span></div>
+                    <div class="settings-item" id="notificationsBtn"><span>🔔 Notifications</span><span class="settings-arrow">→</span></div>
+                    <div class="settings-item" id="digitalTicketBtn"><span>🎫 Digital Ticket</span><span class="settings-arrow">→</span></div>
+                    <div class="settings-item logout-item" id="logoutBtn"><span>🚪 Logout</span><span class="settings-arrow">→</span></div>
+                </div>
+                <div id="editProfileForm" style="display:none; margin-top: var(--space-md);">
+                    <h4>Edit Profile</h4>
+                    <input type="text" id="editFullName" placeholder="Full Name" />
+                    <input type="email" id="editEmail" placeholder="Email" />
+                    <input type="tel" id="editPhone" placeholder="Phone" />
+                    <div style="display:flex; gap:var(--space-sm);"><button id="saveProfileBtn" class="create-account-btn" style="flex:1;">Save Changes</button><button id="cancelProfileBtn" class="order-back-btn" style="flex:1;">Cancel</button></div>
+                </div>
+                <div id="changePasswordForm" style="display:none; margin-top: var(--space-md);">
+                    <h4>Change Password</h4>
+                    <div class="password-field"><input type="password" id="currentPassword" placeholder="Current Password" /><button type="button" class="toggle-password" data-target="currentPassword">👁️</button></div>
+                    <div class="password-field"><input type="password" id="newPassword" placeholder="New Password" /><button type="button" class="toggle-password" data-target="newPassword">👁️</button></div>
+                    <div class="password-field"><input type="password" id="confirmNewPassword" placeholder="Confirm New Password" /><button type="button" class="toggle-password" data-target="confirmNewPassword">👁️</button></div>
+                    <div style="display:flex; gap:var(--space-sm);"><button id="savePasswordBtn" class="create-account-btn" style="flex:1;">Change Password</button><button id="cancelPasswordBtn" class="order-back-btn" style="flex:1;">Cancel</button></div>
+                </div>
+                <div id="notificationsPanel" style="display:none; margin-top: var(--space-md);">
+                    <h4>🔔 Notification Settings</h4>
+                    <div class="notification-item"><label><input type="checkbox" id="notifBookings" checked /> Booking Updates</label><p>Get notified about your booking status changes</p></div>
+                    <div class="notification-item"><label><input type="checkbox" id="notifOffers" checked /> Special Offers</label><p>Receive alerts about exclusive deals and discounts</p></div>
+                    <div class="notification-item"><label><input type="checkbox" id="notifReminders" /> Travel Reminders</label><p>Reminders about upcoming trips</p></div>
+                    <div class="notification-item"><label><input type="checkbox" id="notifNewsletter" /> Newsletter</label><p>Weekly travel inspiration and tips</p></div>
+                    <button id="saveNotificationsBtn" class="create-account-btn" style="margin-top:var(--space-md);">Save Preferences</button>
+                </div>
+                <div id="digitalTicketPanel" style="display:none; margin-top: var(--space-md);">
+                    <div class="ew-confirmation-box">
+                        <h2>🎫 Digital Booking Confirmation</h2>
+                        <p class="ew-confirmed">✓ Booking Confirmed</p>
+                        <hr>
+                        <div id="digitalTicketContent"></div>
+                        <div class="ew-confirmation-buttons">
+                            <button type="button" id="ewPrintTicket">🖨️ Print / Save PDF</button>
+                            <button type="button" id="ewDownloadTicket">📄 Download</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="wishlistOverlay" class="wishlist-overlay">
+        <div class="wishlist-panel">
+            <div class="wishlist-header"><h2>❤️ Your Wishlist</h2><button id="closeWishlist" class="close-wishlist">✕</button></div>
+            <div id="wishlistItems"></div>
+        </div>
+    </div>
+
+    <div id="tourPopup" class="tour-popup">
+        <div class="popup-content">
+            <button id="closePopup" class="close-popup">✕</button>
+            <div class="popup-body">
+                <div class="popup-image"><img id="popupImg" src="" alt="" /></div>
+                <div class="popup-info">
+                    <h2 id="popupName"></h2>
+                    <p id="popupDesc"></p>
+                    <p class="popup-price" id="popupPrice"></p>
+                    <div class="popup-rating"><span>Your Rating:</span><div class="popup-stars" id="popupStars"><span data-value="1">★</span><span data-value="2">★</span><span data-value="3">★</span><span data-value="4">★</span><span data-value="5">★</span></div><span id="popupRatingText">Not rated</span></div>
+                    <button id="popupBookNow" class="book-now">Book Now</button>
+                    <div class="popup-comment"><label>Special Requests:</label><textarea id="popupComment" placeholder="Any special requirements..." rows="3"></textarea><button id="popupSubmitComment" class="rating-submit">Submit Request</button></div>
+                    <div id="popupComments" class="popup-comments"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="bookingPopup" class="booking-popup">
+        <div class="booking-popup-content">
+            <button id="closeBookingPopup" class="close-popup">✕</button>
+            <div class="booking-popup-body">
+                <h2>📋 Book Your Tour</h2>
+                <div class="booking-summary" id="bookingSummary"><h3 id="bookingTourName"></h3><p id="bookingTourPrice"></p><p id="bookingTourDuration"></p></div>
+                <div class="booking-step" id="bookingStep1">
+                    <h3>👤 Traveler Details</h3>
+                    <div class="form-group"><label>Full Name</label><input type="text" id="bookingName" placeholder="Enter full name" /></div>
+                    <div class="form-group"><label>Email</label><input type="email" id="bookingEmail" placeholder="Enter email" /></div>
+                    <div class="form-group"><label>Phone</label><input type="tel" id="bookingPhone" placeholder="Enter phone number" /></div>
+                    <button class="booking-next-btn" onclick="goToBookingStep(2)">Next →</button>
+                </div>
+                <div class="booking-step" id="bookingStep2" style="display:none;">
+                    <h3>📅 Tour Details</h3>
+                    <div class="form-group"><label>Number of Travelers</label><select id="bookingTravelers"><option value="1">1 Traveler</option><option value="2">2 Travelers</option><option value="3">3 Travelers</option><option value="4">4 Travelers</option><option value="5">5 Travelers (10% OFF)</option><option value="6">6 Travelers (10% OFF)</option><option value="7">7 Travelers (10% OFF)</option><option value="8">8+ Travelers (10% OFF)</option></select></div>
+                    <div class="form-group"><label>Number of Days</label><select id="bookingDays"><option value="1">1 Day</option><option value="2">2 Days</option><option value="3">3 Days</option><option value="4">4 Days</option><option value="5">5 Days</option><option value="6">6 Days</option><option value="7">7 Days</option><option value="8">8+ Days</option></select></div>
+                    <div class="form-group"><label>Travel Date</label><input type="date" id="bookingDate" /></div>
+                    <div class="booking-buttons"><button class="booking-back-btn" onclick="goToBookingStep(1)">← Back</button><button class="booking-next-btn" onclick="goToBookingStep(3)">Next →</button></div>
+                </div>
+                <div class="booking-step" id="bookingStep3" style="display:none;">
+                    <h3>💳 Payment Method</h3>
+                    <div class="payment-methods">
+                        <div class="payment-option selected" data-method="card" onclick="selectPaymentMethod('card')"><span>💳 Credit/Debit Card</span></div>
+                        <div class="payment-option" data-method="netbanking" onclick="selectPaymentMethod('netbanking')"><span>🏦 Net Banking</span></div>
+                        <div class="payment-option" data-method="upi" onclick="selectPaymentMethod('upi')"><span>📱 UPI (QR Code)</span></div>
+                        <div class="payment-option" data-method="cod" onclick="selectPaymentMethod('cod')"><span>💵 Cash on Delivery</span></div>
+                    </div>
+                    <div id="cardDetails" class="card-details"><input type="text" placeholder="Card Number" /><div class="card-row"><input type="text" placeholder="MM/YY" /><input type="password" placeholder="CVV" /></div><input type="text" placeholder="Cardholder Name" /></div>
+                    <div id="netbankingOptions" style="display:none;" class="netbanking-options"><select><option value="">Select Bank</option><option value="sbi">State Bank of India</option><option value="hdfc">HDFC Bank</option><option value="icici">ICICI Bank</option><option value="axis">Axis Bank</option><option value="kotak">Kotak Mahindra Bank</option><option value="yes">Yes Bank</option><option value="pnb">Punjab National Bank</option><option value="canara">Canara Bank</option></select></div>
+                    <div id="upiOptions" style="display:none;" class="upi-options"><div class="upi-qr-container"><p class="upi-hint">Scan this QR code with any UPI app</p><div id="upiQRCode" class="upi-qr-box"></div><div class="upi-divider">OR</div><input type="text" placeholder="Enter UPI ID (example@upi)" id="upiIdInput" /></div></div>
+                    <div class="booking-summary-box"><h4>📦 Booking Summary</h4><div class="summary-row"><span>Tour Price</span><span id="summaryBasePrice">₹0</span></div><div class="summary-row"><span>Travelers</span><span id="summaryTravelers">1</span></div><div class="summary-row"><span>Days</span><span id="summaryDays">1</span></div><div class="summary-row"><span>Group Discount</span><span id="summaryGroupDiscount">₹0</span></div><div class="summary-row"><span>GST (5%)</span><span id="summaryGST">₹0</span></div><div class="summary-row total"><span>Total Amount</span><span id="summaryTotal">₹0</span></div></div>
+                    <div class="booking-buttons"><button class="booking-back-btn" onclick="goToBookingStep(2)">← Back</button><button class="booking-confirm-btn" onclick="confirmBooking()">🔒 Confirm Booking</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="bookingSuccessPopup" class="success-popup">
+        <div class="success-popup-content">
+            <div class="success-icon">🎉</div>
+            <h2>Booking Confirmed!</h2>
+            <p class="success-sub">✅ Your tour has been booked successfully</p>
+            <div class="qr-code-area"><div id="qrCodeBox" class="qr-code-box"></div><p class="qr-label">📱 Scan for Digital Ticket</p></div>
+            <div class="success-details">
+                <div class="success-row"><span>Booking #:</span><span id="successBookingId">EW2026-001237</span></div>
+                <div class="success-row"><span>Date:</span><span id="successBookingDate">16 Jan 2026</span></div>
+                <div class="success-row"><span>Amount:</span><span id="successBookingAmount">₹0</span></div>
+                <div class="success-row"><span>Payment:</span><span id="successBookingPayment">Cash on Delivery</span></div>
+                <div class="success-row"><span>Travelers:</span><span id="successBookingTravelers">1</span></div>
+                <div class="success-row"><span>Days:</span><span id="successBookingDays">1</span></div>
+            </div>
+            <div class="live-tracking"><h4>🚌 Live Tracking</h4><div class="tracking-progress"><div class="tracking-bar"></div></div><p class="tracking-status">Status: <strong>Booking Confirmed ✅</strong></p><p class="tracking-eta">Estimated confirmation: 24 hours</p></div>
+            <div class="success-address"><p><strong>📍 Booking Details:</strong></p><p id="successBookingDetails">Goa Beach Escape for 1 traveler(s) - 3 Days</p></div>
+            <div class="success-buttons"><button class="success-btn primary" onclick="closeBookingSuccess()">🏠 Continue Shopping</button><button class="success-btn secondary" onclick="closeBookingSuccessAndGoProfile()">👤 View Bookings</button><button class="success-btn secondary" onclick="downloadInvoice()">💳 Download Invoice</button></div>
+        </div>
+    </div>
+
+    <div class="chatbot-toggle" id="chatbotToggle">💬</div>
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header"><span>💬 TravelBot Assistant</span><button class="chatbot-close" id="chatbotClose">✕</button></div>
+        <div class="chatbot-messages" id="chatbotMessages"><div class="chatbot-msg bot"><p>🤖 Hi! I'm your AI Travel Assistant. Ask me anything about tours, bookings, payments, or travel tips!</p></div></div>
+        <div class="chatbot-quick-replies" id="chatbotQuickReplies"></div>
+        <div class="chatbot-input"><input type="text" id="chatbotInput" placeholder="Ask me about destinations, tours, budget, itinerary..." /><button type="button" class="chatbot-mic-btn" id="chatbotMicBtn" title="Voice Input">🎤</button><button id="chatbotSend">Send</button></div>
+    </div>
+
+    <button id="downToTopBtn" class="down-to-top-btn" title="Go to top">⬆</button>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col"><h4>Explore World</h4><p>Explore the world with us.</p><p>&copy; 2026 Explore World</p></div>
+            <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="#" data-section="home">Home</a></li><li><a href="#" data-section="about">About Us</a></li><li><a href="#" data-section="tours">Tours</a></li><li><a href="#" data-section="offers">Offers</a></li><li><a href="#" data-section="profile">Profile</a></li></ul></div>
+            <div class="footer-col"><h4>Contact</h4><ul><li>📧 info@exploreworld.com</li><li>📞 +91 98765 43210</li><li>📍 Mumbai, India</li></ul></div>
+            <div class="footer-col"><h4>Follow Us</h4><ul class="social-links"><li><a href="#">Instagram</a></li><li><a href="#">Facebook</a></li><li><a href="#">Twitter</a></li><li><a href="#">YouTube</a></li></ul></div>
+        </div>
+      <div class="footer-bottom">
+    <p>Built with 💚 for Frontend Internship · Week 3 · Day 15</p>
+    <!-- Hidden admin access - sirf tum janti ho yeh link hai -->
+    
+</div>
+    </footer>
+</div>
+
+</script>
+<script src="script.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
